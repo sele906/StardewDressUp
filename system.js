@@ -303,6 +303,65 @@ function shirtbasedraw(n) {
   shirtbaseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/shirt/shirts.png';
 }
 
+//바지 버튼 클릭시
+
+var pantscanvas = document.getElementById('pants')
+var pantscontext = pantscanvas.getContext('2d');
+var pantsimg = new Image();
+
+var SharePants = 1;
+var pantsSX = 0;
+var pantsSY = 0;
+var pantsheight = 0;
+
+function pantsbtn(n) {
+  pantscontext.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (n === 1) {
+    pantsSX = 0;
+    pantsSY = 0;
+  } else if (n === 2) {
+    pantsSX = 192;
+    pantsSY = 0;
+  } else if (n === 3) {
+    pantsSX = 384;
+    pantsSY = 0;
+  } else if (n === 4) {
+    pantsSX = 576;
+    pantsSY = 0;
+  }else if (n === 5) {
+    pantsSX = 768;
+    pantsSY = 0;
+  } else if (n === 6) {
+    pantsSX = 960;
+    pantsSY = 0;
+  } else if (n === 7) {
+    pantsSX = 1152;
+    pantsSY = 0;
+  } else if (n === 8) {
+    pantsSX = 1536;
+    pantsSY = 0;
+  } else if (n === 9) {
+    pantsSX = 0;
+    pantsSY = 688;
+  } else if (n === 10) {
+    pantsSX = 192;
+    pantsSY = 688;
+  } else if (n === 11) {
+    pantsSX = 384;
+    pantsSY = 688;
+  } else if (n === 12) {
+    pantsSX = 576;
+    pantsSY = 688;
+  }
+
+  pantsimg.onload = function() {
+    pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);    
+  }
+
+  pantsimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/pants/pants.png';
+}
+
 //신발 버튼 클릭시
 
 var shoescanvas = document.getElementById('shoes')

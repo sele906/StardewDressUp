@@ -9,8 +9,6 @@ baseimg.crossOrigin = "Anonymous";
 var baseimgSX = 0;
 var baseimgSY = 1;
 
-
-
 var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 console.log(imageData.data);
 
