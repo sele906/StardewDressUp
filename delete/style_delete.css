@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: white;
+}
+
+/*좌측 화면*/
+
+#display {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 2fr 0.5fr 1fr 0.5fr;
+  align-items: center;
+}
+
+/*캔버스*/
+
+#canvas {
+  margin: 20% 0 0 0;
+  position: relative;
+  border: 2px solid rgb(63, 61, 50);
+  width: 125px; 
+  height: 250px;
+  background-color: white;
+}
+
+#base {
+  position: absolute;
+}
+
+#shoes {
+  position: absolute;
+}
+
+#pants {
+  position: absolute;
+}
+
+#shirt {
+  position: absolute;
+}
+
+#eyes {
+  position: absolute;
+}
+
+#hair {
+  position: absolute;
+}
+
+#hat {
+  position: absolute;
+}
+
+#results {
+  position: absolute;
+  display: none;
+}
+
+/*화살표*/
+
+#arrows {
+  margin: 5% 0 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  height: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#arrows i {
+  width: 60px;
+  color: rgb(238, 155, 0);
+  height: 80px;
+}
+
+#arrows i:active {
+  color: rgb(190, 114, 0);
+}
+
+/*성별*/
+
+#sex {
+  margin: 10% 0 0 0;
+  min-width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+#man-btn {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px 0 0;
+  border-radius: 10%;
+  background-color: rgb(255, 242, 205);
+}
+
+#man-btn:active {
+  background-color: rgb(218, 206, 175);
+}
+
+#man-btn i {
+  padding: 15px 0 0 0;
+  color: rgb(230, 149, 0);
+}
+
+#man-btn i:active {
+  color: rgb(196, 127, 0);
+}
+
+#woman-btn {
+  width: 100px;
+  height: 100px;
+  margin: 0 0 0 10px;
+  border-radius: 10%;
+  background-color: rgb(255, 242, 205);
+}
+
+#woman-btn:active {
+  background-color: rgb(218, 206, 175);
+}
+
+#woman-btn i {
+  padding: 15px 0 0 0;
+  color: rgb(230, 149, 0);
+}
+
+#woman-btn i:active {
+  color: rgb(196, 127, 0);
+}
+
+/*테스트*/
+
+#test {
+  margin: 10% 0 0 0;
+  width: 100px;
+  height: 50px;
+}
+
+#test-btn {
+  font-size: large;
+  border-radius: 10px;
+  background-color: rgb(233, 151, 0);
+  color: white;
+}
+
+#test-btn:active {
+  background-color: rgb(201, 131, 2);
+  color: rgb(221, 221, 221);
+}
+
+/*우측화면*/
+
+#setting {
+  display: grid;
+  grid-template-rows: 100px 600px;
+}
+
+/*메뉴*/
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.menu-content {
+  border-radius: 30px 30px 0 0 ;
+  margin: 0 3px 0 0;
+}
+
+.menu-btn {
+  border: none;
+  background-color: transparent;
+  border-radius: 30px 30px 0 0 ;
+}
+
+.menu-btn:hover {
+  cursor: pointer;
+}
+
+#body-btn i {
+  color: white;
+  padding: 25px 0 0 0;
+}
+
+#hat-btn i {
+  color: white;
+  padding: 20px 0 0 0;
+}
+
+#shirt-btn i {
+  color: white;
+  padding: 25px 0 0 0;
+}
+
+#pants-btn img {
+  color: white;
+  text-align: center;
+  object-fit: contain;
+  width: 60px;
+  height: 60px;
+  padding: 5px 0 0 0;
+}
+
+#shoes-btn i {
+  color: white;
+  padding: 20px 0 0 0;
+}
+
+/*내용*/
+.content-item {
+  display: none;
+}
+
+#body-content {
+  border-radius: 0 0 20px 20px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+}
+#hat-content {
+  border-radius: 0 0 20px 20px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+#shirt-content {
+  border-radius: 0 0 20px 20px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+}
+#pants-content {
+  border-radius: 0 0 20px 20px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+}
+#shoes-content {
+  border-radius: 0 0 20px 20px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+}

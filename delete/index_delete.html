@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/74b8c9745c.js" crossorigin="anonymous"></script>
+  <title>Stardew Dress Up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="display">
+    <div id="canvas">
+      <canvas id="base"></canvas>
+      <canvas id="shoes"></canvas>
+      <canvas id="pants"></canvas>
+      <canvas id="shirt"></canvas>
+      <canvas id="eyes"></canvas>
+      <canvas id="hair"></canvas>
+      <canvas id="hat"></canvas>
+      <canvas id="accessories"></canvas>
+      <img id="results">
+    </div>
+    <div id="arrows">
+      <i class="fas fa-long-arrow-alt-left fa-4x" onclick="arrowL()"></i>
+      <i class="fas fa-long-arrow-alt-right fa-4x" onclick="arrowR()"></i>
+    </div>
+    <div id="sex">
+      <button id="man-btn" onclick="man()">
+        <i class="fas fa-mars fa-5x"></i>
+      </button>
+      <button id="woman-btn" onclick="woman()">
+        <i class="fas fa-venus fa-5x"></i>
+      </button>
+    </div>
+    <div id="test">
+      <button id="test-btn">TEST</button>
+    </div>
+  </div>
+  <div id="setting">
+    <div id="menu">
+      <div class="menu-content">
+        <button class="menu-btn" id="body-btn" onclick="menu(0, 'orange', 'rgb(255, 233, 172)')">
+          <i class="fas fa-meh-blank fa-4x"></i>
+        </button>
+      </div>
+      <div class="menu-content">
+        <button class="menu-btn" id="hat-btn" onclick="menu(1, 'orange', 'rgb(255, 233, 160)')">
+          <i class="fab fa-redhat fa-5x"></i>
+        </button>
+      </div>
+      <div class="menu-content">
+        <button class="menu-btn" id="shirt-btn" onclick="menu(2, 'orange', 'rgb(255, 233, 140)')">
+          <i class="fas fa-tshirt fa-4x"></i>
+        </button>
+      </div>
+      <div class="menu-content">
+        <button class="menu-btn" id="pants-btn" onclick="menu(3, 'orange', 'rgb(255, 233, 120)')">
+          <img src="pants.png" alt="pants">
+        </button>
+      </div>
+      <div class="menu-content">
+        <button class="menu-btn" id="shoes-btn" onclick="menu(4, 'orange', 'rgb(255, 233, 100)')">
+          <i class="fas fa-shoe-prints fa-4x"></i>
+        </button>
+      </div>
+    </div>
+    <div id="content">
+      <div class="content-item" id="body-content"></div>
+      <div class="content-item" id="hat-content">
+        사진 이름 및 설명 조합 염색여부
+      </div>
+      <div class="content-item" id="shirt-content"></div>
+      <div class="content-item" id="pants-content"></div>
+      <div class="content-item" id="shoes-content"></div>
+    </div>
+  </div>
+
+  <script src="system.js"></script>
+
+</body>
+</html>

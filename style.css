@@ -1,0 +1,381 @@
+* {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background-color: white;
+}
+
+/*좌측 화면*/
+
+#display {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 2fr 0.5fr 1fr 0.5fr;
+  align-items: center;
+}
+
+#test1 {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+/*캔버스*/
+
+#canvas {
+  margin: 20% 0 0 0;
+  position: relative;
+  border: 2px solid rgb(63, 61, 50);
+  width: 125px; 
+  height: 250px;
+  background-color: white;
+}
+
+#base {
+  position: absolute;
+}
+
+#shoes {
+  position: absolute;
+}
+
+#pants {
+  position: absolute;
+}
+
+#shirtbase {
+  position: absolute;
+}
+
+#shirt {
+  position: absolute;
+}
+
+#eyes {
+  position: absolute;
+}
+
+#hair {
+  position: absolute;
+}
+
+#hat {
+  position: absolute;
+}
+
+#results {
+  position: absolute;
+  display: none;
+}
+
+/*화살표*/
+
+#arrows {
+  margin: 5% 0 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  height: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#arrows i {
+  width: 60px;
+  color: rgb(238, 155, 0);
+  height: 80px;
+}
+
+#arrows i:active {
+  color: rgb(190, 114, 0);
+}
+
+/*성별*/
+
+#sex {
+  margin: 10% 0 0 0;
+  min-width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+#man-btn {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px 0 0;
+  border-radius: 10%;
+  background-color: rgb(255, 242, 205);
+}
+
+#man-btn:active {
+  background-color: rgb(218, 206, 175);
+}
+
+#man-btn i {
+  padding: 15px 0 0 0;
+  color: rgb(230, 149, 0);
+}
+
+#man-btn i:active {
+  color: rgb(196, 127, 0);
+}
+
+#woman-btn {
+  width: 100px;
+  height: 100px;
+  margin: 0 0 0 10px;
+  border-radius: 10%;
+  background-color: rgb(255, 242, 205);
+}
+
+#woman-btn:active {
+  background-color: rgb(218, 206, 175);
+}
+
+#woman-btn i {
+  padding: 15px 0 0 0;
+  color: rgb(230, 149, 0);
+}
+
+#woman-btn i:active {
+  color: rgb(196, 127, 0);
+}
+
+/*테스트*/
+
+#test {
+  margin: 10% 0 0 0;
+  width: 100px;
+  height: 50px;
+}
+
+#test-btn {
+  font-size: large;
+  border-radius: 10px;
+  background-color: rgb(233, 151, 0);
+  color: white;
+}
+
+#test-btn:active {
+  background-color: rgb(201, 131, 2);
+  color: rgb(221, 221, 221);
+}
+
+/*우측화면*/
+
+#setting {
+  display: grid;
+  grid-template-rows: 100px 615px;
+}
+
+/*메뉴*/
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.menu-content {
+  border-radius: 30px 30px 0 0 ;
+  margin: 0 3px 0 0;
+}
+
+.menu-btn {
+  border: none;
+  background-color: transparent;
+  border-radius: 30px 30px 0 0 ;
+}
+
+.menu-btn:hover {
+  cursor: pointer;
+}
+
+#body-btn i {
+  color: white;
+  padding: 25px 0 0 0;
+}
+
+#hat-btn i {
+  color: white;
+  padding: 20px 0 0 0;
+}
+
+#shirt-btn i {
+  color: white;
+  padding: 25px 0 0 0;
+}
+
+#pants-btn img {
+  color: white;
+  text-align: center;
+  object-fit: contain;
+  width: 60px;
+  height: 60px;
+  padding: 5px 0 0 0;
+}
+
+#shoes-btn i {
+  color: white;
+  padding: 20px 0 0 0;
+}
+
+/*내용*/
+.content-item {
+  display: none;
+}
+
+/*표*/
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 3px rgb(230, 166, 71) solid;
+  padding: 16px;
+}
+
+th {
+  text-align: center;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 80%;
+}
+
+td:nth-child(1) {
+  padding: 0;
+}
+
+th:nth-child(2), td:nth-child(2) {
+  text-align: center;
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 200%;
+}
+
+td:nth-child(3) {
+  text-align: justify;
+}
+
+th:nth-child(4), td:nth-child(4) {
+  width: 200%;
+}
+
+td:nth-child(4) {
+  text-align: justify;
+}
+
+th:nth-child(5), td:nth-child(5) {
+  width: 70%;
+  text-align: center;
+}
+
+table button {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+}
+
+table button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 213, 136);
+}
+
+table button:active {
+  background-color: rgb(233, 195, 124);
+}
+
+table img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+
+table a:visited {
+  text-decoration: none;
+  color: rgb(141, 102, 34);
+}
+
+/*visited를 링크 속성 뒤로 보낼 수록 미치는 영향 작아짐*/
+
+table a:hover {
+  text-decoration: underline;
+  color: rgb(255, 179, 38);
+}
+
+table a {
+  text-decoration: none;
+  color: rgb(141, 102, 34);
+}
+
+table ul {
+  list-style-position: inside;
+  height: fit-content;
+}
+
+table li span {
+  left: -24px;
+}
+
+/*얼굴*/
+
+#body-content {
+  border-radius: 0 0 10px 10px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+}
+
+/*모자*/
+
+#hat-content {
+  border-radius: 0 0 10px 10px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/*셔츠*/
+
+#shirt-content {
+  border-radius: 0 0 10px 10px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/*바지*/
+
+#pants-content {
+  border-radius: 0 0 10px 10px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/*신발*/
+
+#shoes-content {
+  border-radius: 0 0 10px 10px;
+  border: orange solid 12px;
+  box-sizing: border-box;
+  overflow: auto;
+}
