@@ -89,7 +89,7 @@ function hatbtn(n) {
   hatimg.onload = function() {
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);    
   }
-  hatimg.src='../StardewDressUp/hat/hats.png';
+  hatimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hat/hats.png';
 }
 
 //셔츠 버튼 클릭시
@@ -194,7 +194,7 @@ function shirtbtn(n) {
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);    
   }
 
-  shirtimg.src='../StardewDressUp/shirt/shirts.png';
+  shirtimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/shirt/shirts.png';
 
   shirtbasedraw(n);
 }
@@ -300,7 +300,7 @@ function shirtbasedraw(n) {
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);    
   }
 
-  shirtbaseimg.src='../StardewDressUp/shirt/shirts.png';
+  shirtbaseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/shirt/shirts.png';
 }
 
 //신발 버튼 클릭시
@@ -327,11 +327,11 @@ var context = canvas.getContext('2d');
 var baseimg = new Image();
 var baseArmimg = new Image();
 
-baseimg.src='../StardewDressUp/base/farmer_base.png';
+baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
 var baseimgSX = 0;
 var baseimgSY = 1;
 
-baseArmimg.src = '../StardewDressUp/base/farmer_base.png';
+baseArmimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
 var baseArmimgSX = 96;
 var baseArmimgSY = 0;
 
@@ -560,8 +560,8 @@ var shirtheight = 0;
 
 function man() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  baseimg.src='../StardewDressUp/base/farmer_base.png';
-  baseArmimg.src='../StardewDressUp/base/farmer_base.png';
+  baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
+  baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
   
   hatheight = 0;
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -576,8 +576,8 @@ function man() {
 
 function woman() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  baseimg.src='../StardewDressUp/base/farmer_girl_base.png';
-  baseArmimg.src='../StardewDressUp/base/farmer_girl_base.png';
+  baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
+  baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
   
   hatheight = 1;
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);

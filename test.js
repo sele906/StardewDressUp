@@ -4,7 +4,7 @@ var canvas = document.getElementById('base');
 var context = canvas.getContext('2d');
 
 var baseimg = new Image();
-baseimg.src='../StardewDressUp/base/farmer_base.png';
+baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
 baseimg.crossOrigin = "Anonymous";
 var baseimgSX = 0;
 var baseimgSY = 1;
@@ -25,17 +25,15 @@ console.log(imageData.data);
 
 baseimg.onload = function() {
   context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
-      
-  context.putImageData(imageData, 0, 0);
-  
+  context.putImageData(imageData, 0, 0, 66, 26, 160, 95);
 }
 
 var hoveredColor = document.getElementById('hover');
 var selectedColor = document.getElementById('select');
 
 function pick(event, destination) {
-  var x = event.pageX;
-  var y = event.pageY;
+  var x = event.layerX;
+  var y = event.layerY;
   console.log(x);
   var pixel = context.getImageData(x, y, 1, 1);
   var data = pixel.data;
