@@ -244,6 +244,39 @@ table {
   border-collapse: collapse;
 }
 
+/*얼굴*/
+
+#bodytable {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.bodytablewrap {
+
+  margin: 0;
+  overflow: auto;
+}
+
+#bodytbl-Left {
+  border-right: 3px solid orange;
+}
+
+#bodytbl-Right {
+  border-left: 3px solid orange;
+}
+
+
+.tableheader {
+  box-sizing: border-box;
+  height: 60px;
+  text-align: center;
+  color: rgb(53, 22, 1);
+  padding: 5px 5px 15px 5px;
+}
+
+/*모자, 옷, 바지, 신발 공통*/
+
 th, td {
   border: 3px rgb(230, 166, 71) solid;
   padding: 16px;
