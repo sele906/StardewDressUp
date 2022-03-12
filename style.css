@@ -19,14 +19,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 2fr 0.5fr 1fr 0.5fr;
+  flex: 2fr 0.5fr 1fr;
   align-items: center;
-}
-
-#test1 {
-  height: 20px;
-  display: flex;
-  flex-direction: row;
 }
 
 /*캔버스*/
@@ -80,11 +74,11 @@ body {
 /*화살표*/
 
 #arrows {
-  margin: 5% 0 0 0;
+  margin: 10% 0 0 0;
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 180px;
+  width: 160px;
   height: 0px;
   justify-content: space-between;
   align-items: center;
@@ -103,7 +97,7 @@ body {
 /*성별*/
 
 #sex {
-  margin: 10% 0 0 0;
+  margin: 15% 0 0 0;
   min-width: 200px;
   height: 100px;
   display: flex;
@@ -248,12 +242,11 @@ table {
 
 #bodytable {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   box-sizing: border-box;
 }
 
 .bodytablewrap {
-
   margin: 0;
   overflow: auto;
 }
@@ -265,7 +258,6 @@ table {
 #bodytbl-Right {
   border-left: 3px solid orange;
 }
-
 
 .tableheader {
   box-sizing: border-box;

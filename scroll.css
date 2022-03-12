@@ -1,3 +1,5 @@
+/*전체>>>핸들로 좁혀나갈것 중간과정 생략되면 작동 안됨*/
+
 .content-item::-webkit-scrollbar {
   width: 15px;
 }
