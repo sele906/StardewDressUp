@@ -146,26 +146,6 @@ body {
   color: rgb(196, 127, 0);
 }
 
-/*테스트*/
-
-#test {
-  margin: 10% 0 0 0;
-  width: 100px;
-  height: 50px;
-}
-
-#test-btn {
-  font-size: large;
-  border-radius: 10px;
-  background-color: rgb(233, 151, 0);
-  color: white;
-}
-
-#test-btn:active {
-  background-color: rgb(201, 131, 2);
-  color: rgb(221, 221, 221);
-}
-
 /*우측화면*/
 
 #setting {
@@ -240,31 +220,129 @@ table {
 
 /*얼굴*/
 
-#bodytable {
+#bodyinf {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  align-items: center;
 }
 
-.bodytablewrap {
-  margin: 0;
-  overflow: auto;
-}
-
-#bodytbl-Left {
-  border-right: 3px solid orange;
-}
-
-#bodytbl-Right {
-  border-left: 3px solid orange;
-}
-
-.tableheader {
+.bodyinfheader {
+  display: inline-block;
   box-sizing: border-box;
-  height: 60px;
+  height: 20%;
   text-align: center;
   color: rgb(53, 22, 1);
-  padding: 5px 5px 15px 5px;
+  padding: 10px 5px 15px 5px;
+}
+
+.body-arrow {
+  color: rgb(230, 149, 0);
+  position: relative;
+  top: 32%;
+}
+
+.body-arrow i {
+  width: 28px;
+  height: 45px;
+}
+
+#L-arrow {
+  text-align: end;
+  justify-content: center;
+  margin: 0 2% 0 0;
+}
+
+#R-arrow {
+  margin: 0 0 0 2%;
+}
+
+.bodyinf-Up {
+  display: inline-block;
+}
+
+#hairbox {
+  display: inline-block;
+  height: 65%;
+  display: flex;
+  flex-direction: row;
+  flex: 1fr 0 1fr;
+  align-items: center;
+}
+
+#hairbtn-L:hover {
+  cursor: pointer;
+}
+
+#hairbtn-L:active {
+  color: rgb(196, 127, 0);
+  cursor: pointer;
+}
+
+#haircanvas {
+  width: 192px;
+  border: orange 1px solid;
+}
+
+
+#hairbtn-R:hover {
+  cursor: pointer;
+}
+
+#hairbtn-R:active {
+  color: rgb(196, 127, 0);
+  cursor: pointer;
+}
+
+#hair-num {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 15%;
+  text-align: center;
+  padding: 4px;
+}
+
+#bodyinf-Down {
+  display: inline-block;
+}
+
+#accessorybox {
+  display: inline-block;
+  height: 65%;
+  display: flex;
+  flex-direction: row;
+}
+
+#accessory-L:hover {
+  cursor: pointer;
+}
+
+#accessory-L:active {
+  color: rgb(196, 127, 0);
+  cursor: pointer;
+}
+
+#accessorycanvas {
+  width: 192px;
+  border: 1px orange solid;
+}
+
+#accessory-R:hover {
+  cursor: pointer;
+}
+
+#accessory-R:active {
+  color: rgb(196, 127, 0);
+  cursor: pointer;
+}
+
+#accessory-num {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 15%;
+  text-align: center;
+  padding: 4px;
+
 }
 
 /*모자, 옷, 바지, 신발 공통*/

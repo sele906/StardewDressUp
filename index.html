@@ -70,13 +70,33 @@
     </div>
     <div id="content">
       <div class="content-item" id="body-content">
-        <div id="bodytable">
-          <div class="bodytablewrap" id="bodytbl-Left">
-            <h2 class="tableheader">머리</h2>
-            <div></div>
+        <div id="bodyinf">
+          <div class="bodyinfwrap" id="bodyinf-Up">
+            <h2 class="bodyinfheader">머리</h2>
+            <div id="hairbox">
+              <div class="body-arrow" id="L-arrow">
+                <i class="fa fa-solid fa-angle-left fa-3x" id="hairbtn-L" onclick="hairbtnL()"></i>
+                <!--만약 폰트어썸 작동 안되면 앞에 'fa' 한번 더 붙여보기!-->
+              </div>
+              <canvas id="haircanvas"></canvas>
+              <div class="body-arrow" id="R-arrow">
+                <i class="fa fa-solid fa-angle-right fa-3x" id="hairbtn-R" onclick="hairbtnR()"></i>
+              </div>
+            </div>
+            <div id="hair-num">헤어 스타일 1</div>
           </div>
-          <div class="bodytablewrap" id="bodytbl-Right">
-            <h2 class="tableheader">악세사리</h2>
+          <div class="bodyinfwrap" id="bodyinf-Down">
+            <h2 class="bodyinfheader">악세사리</h2>
+            <div id="accessorybox">
+              <div class="body-arrow" id="L-arrow">
+                <i class="fa fa-solid fa-angle-left fa-3x" id="accessory-L" onclick="accessorybtnL()"></i>
+              </div>
+              <canvas id="accessorycanvas"></canvas>
+              <div class="body-arrow" id="R-arrow">
+                <i class="fa fa-solid fa-angle-right fa-3x" id="accessory-R" onclick="accessorybtnR()"></i>
+              </div>
+            </div>
+            <div id="accessory-num">악세사리 스타일 1</div>
           </div>
         </div>
       </div>
