@@ -66,6 +66,10 @@ body {
   position: absolute;
 }
 
+#blank {
+  position: absolute;
+}
+
 #results {
   position: absolute;
   display: none;

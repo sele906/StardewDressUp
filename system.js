@@ -26,6 +26,7 @@ menu(0, 'orange', 'rgb(255, 233, 172)');
 //내용
 
 //모자 버튼 클릭시
+var hatnum = [];
 var ShareHat = 1;
 var hatSX = 0;
 var hatSY = 0;
@@ -37,8 +38,31 @@ function hatSYwithI(n) {
 var hatcanvas = document.getElementById('hat');
 var hatcontext = hatcanvas.getContext('2d');
 var hatimg = new Image();
+hatimg.crossOrigin="anonymous";
+
+function samebutton() {
+  if (hatnum.length <= 1 ) {
+    return true;
+  } else {
+    if (hatnum[0] != hatnum[1]) {
+      return false;
+    } else {
+    return true;
+    }
+  }
+}
 
 function hatbtn(n) {
+
+  hatnum.push(n);
+  if (hatnum.length > 2) {
+    hatnum.splice(0, hatnum.length - 2);
+  }
+  
+  if (hatcanvas.toDataURL() != blank.toDataURL() && samebutton()) {
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
+
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n % 12 === 1) {
@@ -90,6 +114,7 @@ function hatbtn(n) {
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);    
   }
   hatimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hat/hats.png';
+  }
 }
 
 //셔츠 버튼 클릭시
