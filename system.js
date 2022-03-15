@@ -40,11 +40,11 @@ var hatcontext = hatcanvas.getContext('2d');
 var hatimg = new Image();
 hatimg.crossOrigin="anonymous";
 
-function samebutton() {
-  if (hatnum.length <= 1 ) {
-    return true;
+function samebutton(num) {
+  if (num.length <= 1 ) {
+    return false;
   } else {
-    if (hatnum[0] != hatnum[1]) {
+    if (num[0] != num[1]) {
       return false;
     } else {
     return true;
@@ -59,11 +59,12 @@ function hatbtn(n) {
     hatnum.splice(0, hatnum.length - 2);
   }
   
-  if (hatcanvas.toDataURL() != blank.toDataURL() && samebutton()) {
-    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+  if (hatcanvas.toDataURL() != blank.toDataURL() && samebutton(hatnum)) {
+    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    console.log(samebutton(hatnum), hatnum);
   } else {
-
-  hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+console.log(samebutton(hatnum), hatnum);
+  hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
 
   if (n % 12 === 1) {
     hatSX = 0;
@@ -119,13 +120,17 @@ function hatbtn(n) {
 
 //셔츠 버튼 클릭시
 
+var shirtbasenum = [];
 var shirtbasecanvas = document.getElementById('shirtbase');
 var shirtbasecontext = shirtbasecanvas.getContext('2d');
 var shirtbaseimg = new Image();
+shirtbaseimg.crossOrigin="anonymous";
 
+var shirtnum = [];
 var shirtcanvas = document.getElementById('shirt');
 var shirtcontext = shirtcanvas.getContext('2d');
 var shirtimg = new Image();
+shirtimg.crossOrigin="anonymous";
 
 function shirtSYwithI(n) {
   return (-16/3 * n * n * n) + (20 * n * n) + (-20/3 * n);
@@ -137,7 +142,17 @@ var shirtSY = 0;
 
 function shirtbtn(n) {
 
-  shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+  shirtnum.push(n);
+  if (shirtnum.length > 2) {
+    shirtnum.splice(0, shirtnum.length - 2);
+  }
+  
+  if (shirtcanvas.toDataURL() != blank.toDataURL() && samebutton(shirtnum)) {
+    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtbasedraw(n);
+  } else {
+
+  shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
   
   if (n % 16 === 1) {
     shirtSX = 0;
@@ -222,10 +237,21 @@ function shirtbtn(n) {
   shirtimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/shirt/shirts.png';
 
   shirtbasedraw(n);
+  }
 }
 
 function shirtbasedraw(n) {
-  shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+
+  shirtbasenum.push(n);
+  if (shirtbasenum.length > 2) {
+    shirtbasenum.splice(0, shirtbasenum.length - 2);
+  }
+  
+  if (shirtbasecanvas.toDataURL() != blank.toDataURL() && samebutton(shirtbasenum)) {
+    shirtbasecontext.clearRect(0, 0, shirtbasecanvas.width, shirtbasecanvas.height);
+  } else {
+
+  shirtbasecontext.clearRect(0, 0, shirtbasecanvas.width, shirtbasecanvas.height);
 
   if (n === 129) {
     shirtSX = 128;
@@ -326,13 +352,16 @@ function shirtbasedraw(n) {
   }
 
   shirtbaseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/shirt/shirts.png';
+  }
 }
 
 //바지 버튼 클릭시
 
+var pantsnum = [];
 var pantscanvas = document.getElementById('pants')
 var pantscontext = pantscanvas.getContext('2d');
 var pantsimg = new Image();
+pantsimg.crossOrigin="anonymous";
 
 function pantsSYwithI(n) {
   return (-61/6 * n * n * n) + (30 * n * n) + (73/6 * n);
@@ -344,6 +373,15 @@ var pantsPositionY = 0;
 var pantsheight = 0;
 
 function pantsbtn(n) {
+
+  pantsnum.push(n);
+  if (pantsnum.length > 2) {
+    pantsnum.splice(0, pantsnum.length - 2);
+  }
+  
+  if (pantscanvas.toDataURL() != blank.toDataURL() && samebutton(pantsnum)) {
+    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+  } else {
   pantscontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n === 1) {
@@ -390,6 +428,7 @@ function pantsbtn(n) {
   }
 
   pantsimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/pants/pants.png';
+  }
 }
 
 //신발 버튼 클릭시
@@ -398,7 +437,6 @@ var shoescanvas = document.getElementById('shoes')
 var shoescontext = shoescanvas.getContext('2d');
 
 function shoesbtn(n) {
-  
 }
 
 
@@ -460,21 +498,34 @@ function arrowR() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
 
   } else if (i === 1) {
 
@@ -488,11 +539,19 @@ function arrowR() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     backheight = 2;
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
@@ -500,12 +559,16 @@ function arrowR() {
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
     backheight = 0;   
+    }
 
     //바지
-
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
 
   } else if (i === 2) {
     
@@ -521,23 +584,37 @@ function arrowR() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95); 
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);    
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.translate(pantscanvas.width, 0);
     pantscontext.scale(-1, 1);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
+
   } else {
     
     i = 0;
@@ -550,21 +627,34 @@ function arrowR() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);  
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
-    shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);   
+    shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);  
+    } 
     
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
   }
 }
 
@@ -584,11 +674,19 @@ function arrowL() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60); 
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     backheight = 2;
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
@@ -596,11 +694,16 @@ function arrowL() {
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
     backheight = 0;
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
 
   } else if (i === 2) {
     
@@ -614,21 +717,34 @@ function arrowL() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
 
   } else if (i === 1) {
     
@@ -642,21 +758,34 @@ function arrowL() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
     
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
 
   } else {
     
@@ -672,23 +801,36 @@ function arrowL() {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);  
 
     //모자
+    if (samebutton(hatnum)) {
+      hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
     hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+    }
 
     //셔츠
+    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+      shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+      shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
+    }
 
     //바지
+    if (samebutton(pantsnum)) {
+      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
     pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
     pantscontext.translate(pantscanvas.width, 0);
     pantscontext.scale(-1, 1);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+    }
   }
 }
 
