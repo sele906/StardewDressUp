@@ -68,6 +68,12 @@ function accessorybtnR() {
 }
 
 function accessorybtn() {
+  
+  if (accessoryundo === true) {
+    document.querySelector('#accessoryundo').innerHTML = '취소하기'
+    accessoryundo = false;
+  }
+
   document.getElementById("accessoryDcanvas").style.background = 'none';
   accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
   accessoryDcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,22 +97,42 @@ function accessorybtn() {
   }
 
   if (accessorystylenum / 8 <= 1) {
-    accessorySY = 0;
+    accessoryPositionY = 0 * 32;
   } else if (accessorystylenum / 8 <= 2) {
-    accessorySY = 1 * 32;
+    accessoryPositionY = 1 * 32;
   } else if (accessorystylenum / 8 <= 3) {
-    accessorySY = 2 * 32;
+    accessoryPositionY = 2 * 32;
   }
+
+  if (i === 0) {
+    accessorySY = 0 + accessoryPositionY;
+  } else if (i === 1) {
+    accessorySY = 16 + accessoryPositionY;
+  } else if (i === 2) {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else if (i === 3) {
+    accessorySY = 16 + accessoryPositionY;
+  } 
 
   accessoryimg.onload = function() {
     accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65);    
-    accessoryDcontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 63, 0, 170, 150);   
+    accessoryDcontext.drawImage(accessoryimg, accessorySX, accessoryPositionY, 17, 20, 63, 0, 170, 150);   
   }
   accessoryimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/accessories/accessories.png';
 }
 
+var accessoryundo = false;
+
 function accessoryundobtn() {
+  if (accessoryundo === false) {
   accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  accessoryundo = true;
+  document.querySelector('#accessoryundo').innerHTML = '적용하기';
+  } else if (accessoryundo === true) {
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY + accessoryPositionY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    accessoryundo = false;
+    document.querySelector('#accessoryundo').innerHTML = '취소하기';
+  }
 }
 
 //머리 버튼 클릭시 
@@ -124,6 +150,10 @@ var hairDcontext = hairDcanvas.getContext('2d');
 
 var hairimg = new Image();
 hairimg.crossOrigin="anonymous";
+
+function hairSYwithI1(n) {
+  return (-10 * n * n * n) + (29 * n * n) + (14 * n); 
+}
 
 j = 0;
 var hairstylenum = 0;
@@ -149,6 +179,10 @@ function hairbtnR() {
 }
 
 function hairbtn() {
+  if (hairundo === true) {
+  document.querySelector('#hairundo').innerHTML = '취소하기'
+  hairundo = false;
+  }
   
   document.getElementById("hairDcanvas").style.background = 'none';
   haircontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -190,9 +224,10 @@ function hairbtn() {
       hairPositionY = 6 * 96;
     }
     
+    hairSY = hairSYwithI1(i) + hairPositionY;
     hairimg.onload = function() {
-      haircontext.drawImage(hairimg, hairSX, hairSY + hairPositionY, 16, 33, 74, 37 + hairheight, 170, 90);    
-      hairDcontext.drawImage(hairimg, hairSX, hairSY + hairPositionY, 16, 33, 90, 10, 130, 170);   
+      haircontext.drawImage(hairimg, hairSX, hairSY, 16, 33, 74, 37 + hairheight, 170, 90);    
+      hairDcontext.drawImage(hairimg, hairSX, hairPositionY, 16, 33, 90, 10, 130, 170);   
     }
     hairimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hair/hairstyles.png';
   } else {
@@ -229,17 +264,36 @@ function hairbtn() {
       hairPositionY = 5 * 128;
     }
 
+    if (i === 0) {
+      hairSY = 0 + hairPositionY;
+    } else if (i === 1) {
+      hairSY = 32 + hairPositionY;
+    } else if (i === 2) {
+      hairSY = 64 + hairPositionY;
+    } else if (i === 3) {
+      hairSY = 98 + hairPositionY;
+    }
+
     hairimg.onload = function() {
       haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85);    
-      hairDcontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 90, 10, 130, 170);   
+      hairDcontext.drawImage(hairimg, hairSX, hairPositionY, 16, 32, 90, 10, 130, 170);   
     }
     hairimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hair/hairstyles2.png';
   }
 }
 
+var hairundo = false;
 
 function hairundobtn() {
+  if (hairundo === false) {
   haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  hairundo = true;
+  document.querySelector('#hairundo').innerHTML = '적용하기';
+  } else if (hairundo === true) {
+    haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85);
+    hairundo = false;
+    document.querySelector('#hairundo').innerHTML = '취소하기';
+  }
 }
 
 //모자 버튼 클릭시
@@ -700,6 +754,8 @@ function arrowR() {
   //버튼 클릭할때마다 캔버스 재정비 -> 뒤집은 이미지 또 뒤집는것 막아줌
   context.setTransform(1,0,0,1,0,0);
   pantscontext.setTransform(1,0,0,1,0,0);
+  haircontext.setTransform(1,0,0,1,0,0);
+  accessorycontext.setTransform(1,0,0,1,0,0);
 
   if (i < 1) {
     
@@ -711,6 +767,31 @@ function arrowR() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+
+    //머리
+
+    if (hairundo === true) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 32 + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 16 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }
 
     //모자
     if (samebutton(hatnum)) {
@@ -752,6 +833,29 @@ function arrowR() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+
+    //머리
+    if (hairundo) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 64 + hairPositionY;
+        console.log(i, hairSY);
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
     //모자
     if (samebutton(hatnum)) {
@@ -798,6 +902,35 @@ function arrowR() {
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95); 
 
+    //머리
+    if (hairundo) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.translate(canvas.width, 0);
+        haircontext.scale(-1, 1);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 98 + hairPositionY;
+        console.log(i, hairSY);
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 16 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.translate(canvas.width, 0);
+    accessorycontext.scale(-1, 1);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }
+
     //모자
     if (samebutton(hatnum)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -829,7 +962,7 @@ function arrowR() {
     pantscontext.scale(-1, 1);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
-
+    
   } else {
     
     i = 0;
@@ -839,7 +972,31 @@ function arrowR() {
     baseArmimgSY = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
-    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);  
+    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    
+    //머리
+    if (hairundo) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 0 + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 0 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }
 
     //모자
     if (samebutton(hatnum)) {
@@ -876,6 +1033,7 @@ function arrowR() {
 function arrowL() {
   context.setTransform(1,0,0,1,0,0);
   pantscontext.setTransform(1,0,0,1,0,0);
+  haircontext.setTransform(1,0,0,1,0,0);
 
   if (i === 3) {
     
@@ -887,6 +1045,29 @@ function arrowL() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+
+    //머리
+    if (hairundo === true) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 64 + hairPositionY;
+        console.log(i, hairSY);
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
     //모자
     if (samebutton(hatnum)) {
@@ -931,6 +1112,30 @@ function arrowL() {
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 
+    //머리
+    if (hairundo === true) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 32 + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 16 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }
+
     //모자
     if (samebutton(hatnum)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -971,6 +1176,30 @@ function arrowL() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);  
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+
+    //머리
+    if (hairundo === true) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 0 + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 0 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }    
     
     //모자
     if (samebutton(hatnum)) {
@@ -1015,6 +1244,35 @@ function arrowL() {
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);  
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);  
 
+    //머리
+    if (hairundo === true) {
+      haircontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+      if (hairstylenum < 56) {
+        hairSY = hairSYwithI1(i) + hairPositionY;
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.translate(canvas.width, 0);
+        haircontext.scale(-1, 1);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      } else {
+        hairSY = 98 + hairPositionY;
+        console.log(i, hairSY);
+        haircontext.clearRect(0, 0, canvas.width, canvas.height);
+        haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85); 
+      }
+    }
+
+    //악세사리
+    if (accessoryundo === true) {
+      accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    } else {
+    accessorySY = 16 + accessoryPositionY;
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+    accessorycontext.translate(canvas.width, 0);
+    accessorycontext.scale(-1, 1);
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+    }
+
     //모자
     if (samebutton(hatnum)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -1058,6 +1316,14 @@ function man() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
+
+  hairheight = 0;
+  haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  haircontext.drawImage(hairimg, hairSX, hairSY, 16, 33, 74, 37 + hairheight, 170, 90); 
+
+  accessoryheight = 0;
+  accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
   
   hatheight = 0;
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -1078,6 +1344,14 @@ function woman() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
+
+  hairheight = 4;
+  haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  haircontext.drawImage(hairimg, hairSX, hairSY, 16, 33, 74, 37 + hairheight, 170, 90); 
+
+  accessoryheight = 3;
+  accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
   
   hatheight = 1;
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
