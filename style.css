@@ -66,6 +66,10 @@ body {
   position: absolute;
 }
 
+#accessories {
+  position: absolute;
+}
+
 #blank {
   position: absolute;
 }
@@ -283,9 +287,13 @@ table {
   cursor: pointer;
 }
 
-#haircanvas {
+#hairDcanvas {
   width: 192px;
-  border: orange 1px solid;
+  border: rgb(243, 158, 0) 2px solid;
+  background-size: 70% 70%;
+  background-image: url('../StardewDressUp/hair-salon.png');
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
@@ -298,12 +306,27 @@ table {
   cursor: pointer;
 }
 
-#hair-num {
-  display: inline-block;
+#hair-setting {
   box-sizing: border-box;
-  height: 15%;
   text-align: center;
-  padding: 4px;
+  padding: 0;
+  margin: auto;
+}
+
+#hair-setting > div {
+  box-sizing: border-box;
+  padding: 10px 10px 10px 0px;
+}
+
+#hairundo {
+  position: relative;
+  width: 15%;
+  height: 10%;
+  background-color: orange;
+  border-radius: 7px;
+  color: white;
+  margin: 0;
+  padding: 0;
 }
 
 #bodyinf-Down {
@@ -326,9 +349,13 @@ table {
   cursor: pointer;
 }
 
-#accessorycanvas {
+#accessoryDcanvas {
   width: 192px;
-  border: 1px orange solid;
+  border: rgb(243, 158, 0) 2px solid;
+  background-size: 70% 70%;
+  background-image: url('../StardewDressUp/accessories.png');
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 #accessory-R:hover {
@@ -340,13 +367,28 @@ table {
   cursor: pointer;
 }
 
-#accessory-num {
-  display: inline-block;
-  box-sizing: border-box;
-  height: 15%;
-  text-align: center;
-  padding: 4px;
 
+#accessory-setting {
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0;
+  margin: auto;
+}
+
+#accessory-setting > div {
+  box-sizing: border-box;
+  padding: 10px 10px 10px 0px;
+}
+
+#accessoryundo {
+  position: relative;
+  width: 15%;
+  height: 10%;
+  background-color: orange;
+  border-radius: 7px;
+  color: white;
+  margin: 0;
+  padding: 0;
 }
 
 /*모자, 옷, 바지, 신발 공통*/

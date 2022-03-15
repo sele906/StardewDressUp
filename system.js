@@ -25,6 +25,223 @@ menu(0, 'orange', 'rgb(255, 233, 172)');
 
 //내용
 
+//악세사리 버튼 클릭시
+var accessorySX = 0;
+var accessorySY = 0;
+var accessoryPositionY = 0;
+var accessoryheight = 0;
+
+var accessorycanvas = document.getElementById('accessories');
+var accessorycontext = accessorycanvas.getContext('2d');
+
+var accessoryDcanvas = document.getElementById('accessoryDcanvas');
+var accessoryDcontext = accessoryDcanvas.getContext('2d');
+
+var accessoryimg = new Image();
+accessoryimg.crossOrigin="anonymous";
+
+k = 0;
+var accessorystylenum = 0;
+
+function accessorybtnL() {
+  k--;
+  if (k < 1) {
+    k = 19;
+  }
+  accessorystylenum = k;
+  console.log(accessorystylenum);
+
+  accessorybtn();
+}
+
+function accessorybtnR() {
+  k++;
+  if (k > 19) {
+    k = 1;
+  }
+  accessorystylenum = k;
+  console.log(accessorystylenum);
+  accessorycontext.fillStyle = 'green';
+  accessorycontext.fillRect(17, 20, 70, 35);
+
+  accessorybtn();
+}
+
+function accessorybtn() {
+  document.getElementById("accessoryDcanvas").style.background = 'none';
+  accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  accessoryDcontext.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (accessorystylenum % 8 === 1) {
+    accessorySX = 0 * 16;
+  } else if (accessorystylenum % 8 === 2) {
+    accessorySX = 1 * 16;
+  } else if (accessorystylenum % 8 === 3) {
+    accessorySX = 2 * 16;
+  } else if (accessorystylenum % 8 === 4) {
+    accessorySX = 3 * 16;
+  } else if (accessorystylenum % 8 === 5) {
+    accessorySX = 4 * 16;
+  } else if (accessorystylenum % 8 === 6) {
+    accessorySX = 5 * 16;
+  } else if (accessorystylenum % 8 === 7) {
+    accessorySX = 6 * 16;
+  } else if (accessorystylenum % 8 === 0) {
+    accessorySX = 7 * 16;
+  }
+
+  if (accessorystylenum / 8 <= 1) {
+    accessorySY = 0;
+  } else if (accessorystylenum / 8 <= 2) {
+    accessorySY = 1 * 32;
+  } else if (accessorystylenum / 8 <= 3) {
+    accessorySY = 2 * 32;
+  }
+
+  accessoryimg.onload = function() {
+    accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65);    
+    accessoryDcontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 63, 0, 170, 150);   
+  }
+  accessoryimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/accessories/accessories.png';
+}
+
+function accessoryundobtn() {
+  accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+//머리 버튼 클릭시 
+
+var hairSX = 0;
+var hairSY = 0;
+var hairPositionY = 0;
+var hairheight = 0;
+
+var haircanvas = document.getElementById('hair');
+var haircontext = haircanvas.getContext('2d');
+
+var hairDcanvas = document.getElementById('hairDcanvas');
+var hairDcontext = hairDcanvas.getContext('2d');
+
+var hairimg = new Image();
+hairimg.crossOrigin="anonymous";
+
+j = 0;
+var hairstylenum = 0;
+
+function hairbtnL() {
+  j--;
+  if (j < 1) {
+    j = 79;
+  }
+  hairstylenum = j;
+
+  hairbtn();
+}
+
+function hairbtnR() {
+  j++;
+  if (j > 79) {
+    j = 1;
+  }
+  hairstylenum = j;
+
+  hairbtn();
+}
+
+function hairbtn() {
+  
+  document.getElementById("hairDcanvas").style.background = 'none';
+  haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  hairDcontext.clearRect(0, 0, canvas.width, canvas.height);
+
+  if (hairstylenum < 56) {
+
+    if (hairstylenum % 8 === 1) {
+      hairSX = 0 * 16;
+    } else if (hairstylenum % 8 === 2) {
+      hairSX = 1 * 16;
+    } else if (hairstylenum % 8 === 3) {
+      hairSX = 2 * 16;
+    } else if (hairstylenum % 8 === 4) {
+      hairSX = 3 * 16;
+    } else if (hairstylenum % 8 === 5) {
+      hairSX = 4 * 16;
+    } else if (hairstylenum % 8 === 6) {
+      hairSX = 5 * 16;
+    } else if (hairstylenum % 8 === 7) {
+      hairSX = 6 * 16;
+    } else if (hairstylenum % 8 === 0) {
+      hairSX = 7 * 16;
+    }
+
+    if (hairstylenum / 8 <= 1) {
+      hairPositionY = 0 * 96;
+    } else if (hairstylenum / 8 <= 2) {
+      hairPositionY = 1 * 96;
+    } else if (hairstylenum / 8 <= 3) {
+      hairPositionY = 2 * 96;
+    } else if (hairstylenum / 8 <= 4) {
+      hairPositionY = 3 * 96;
+    } else if (hairstylenum / 8 <= 5) {
+      hairPositionY = 4 * 96;
+    } else if (hairstylenum / 8 <= 6) {
+      hairPositionY = 5 * 96;
+    } else if (hairstylenum / 8 <= 7) {
+      hairPositionY = 6 * 96;
+    }
+    
+    hairimg.onload = function() {
+      haircontext.drawImage(hairimg, hairSX, hairSY + hairPositionY, 16, 33, 74, 37 + hairheight, 170, 90);    
+      hairDcontext.drawImage(hairimg, hairSX, hairSY + hairPositionY, 16, 33, 90, 10, 130, 170);   
+    }
+    hairimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hair/hairstyles.png';
+  } else {
+
+    if (hairstylenum % 8 === 1) {
+      hairSX = 0 * 16;
+    } else if (hairstylenum % 8 === 2) {
+      hairSX = 1 * 16;
+    } else if (hairstylenum % 8 === 3) {
+      hairSX = 2 * 16;
+    } else if (hairstylenum % 8 === 4) {
+      hairSX = 3 * 16;
+    } else if (hairstylenum % 8 === 5) {
+      hairSX = 4 * 16;
+    } else if (hairstylenum % 8 === 6) {
+      hairSX = 5 * 16;
+    } else if (hairstylenum % 8 === 7) {
+      hairSX = 6 * 16;
+    } else if (hairstylenum % 8 === 0) {
+      hairSX = 7 * 16;
+    }
+
+    if (hairstylenum / 8 <= 1) {
+      hairPositionY = 0 * 128;
+    } else if (hairstylenum / 8 <= 2) {
+      hairPositionY = 1 * 128;
+    } else if (hairstylenum / 8 <= 3) {
+      hairPositionY = 2 * 128;
+    } else if (hairstylenum / 8 <= 4) {
+      hairPositionY = 3 * 128;
+    } else if (hairstylenum / 8 <= 5) {
+      hairPositionY = 4 * 128;
+    } else if (hairstylenum / 8 <= 6) {
+      hairPositionY = 5 * 128;
+    }
+
+    hairimg.onload = function() {
+      haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85);    
+      hairDcontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 90, 10, 130, 170);   
+    }
+    hairimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hair/hairstyles2.png';
+  }
+}
+
+
+function hairundobtn() {
+  haircontext.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 //모자 버튼 클릭시
 var hatnum = [];
 var ShareHat = 1;
@@ -60,11 +277,9 @@ function hatbtn(n) {
   }
   
   if (hatcanvas.toDataURL() != blank.toDataURL() && samebutton(hatnum)) {
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
-    console.log(samebutton(hatnum), hatnum);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
-console.log(samebutton(hatnum), hatnum);
-  hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+  hatcontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n % 12 === 1) {
     hatSX = 0;
@@ -148,11 +363,11 @@ function shirtbtn(n) {
   }
   
   if (shirtcanvas.toDataURL() != blank.toDataURL() && samebutton(shirtnum)) {
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasedraw(n);
   } else {
 
-  shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+  shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
   
   if (n % 16 === 1) {
     shirtSX = 0;
@@ -248,10 +463,10 @@ function shirtbasedraw(n) {
   }
   
   if (shirtbasecanvas.toDataURL() != blank.toDataURL() && samebutton(shirtbasenum)) {
-    shirtbasecontext.clearRect(0, 0, shirtbasecanvas.width, shirtbasecanvas.height);
+    shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
 
-  shirtbasecontext.clearRect(0, 0, shirtbasecanvas.width, shirtbasecanvas.height);
+  shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n === 129) {
     shirtSX = 128;
@@ -380,7 +595,7 @@ function pantsbtn(n) {
   }
   
   if (pantscanvas.toDataURL() != blank.toDataURL() && samebutton(pantsnum)) {
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
   pantscontext.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -502,7 +717,7 @@ function arrowR() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -512,7 +727,7 @@ function arrowR() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
@@ -520,10 +735,10 @@ function arrowR() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
 
@@ -543,7 +758,7 @@ function arrowR() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -554,7 +769,7 @@ function arrowR() {
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     backheight = 2;
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight - backheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
@@ -563,10 +778,10 @@ function arrowR() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
 
@@ -588,7 +803,7 @@ function arrowR() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -598,7 +813,7 @@ function arrowR() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);    
@@ -606,11 +821,11 @@ function arrowR() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
-    pantscontext.translate(pantscanvas.width, 0);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
+    pantscontext.translate(canvas.width, 0);
     pantscontext.scale(-1, 1);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
@@ -631,7 +846,7 @@ function arrowR() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -641,7 +856,7 @@ function arrowR() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);  
@@ -649,10 +864,10 @@ function arrowR() {
     
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
   }
@@ -678,7 +893,7 @@ function arrowL() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60); 
     }
 
@@ -689,7 +904,7 @@ function arrowL() {
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
     backheight = 2;
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight - backheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
@@ -698,10 +913,10 @@ function arrowL() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
 
@@ -721,7 +936,7 @@ function arrowL() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -731,7 +946,7 @@ function arrowL() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
@@ -739,10 +954,10 @@ function arrowL() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
 
@@ -762,7 +977,7 @@ function arrowL() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -772,7 +987,7 @@ function arrowL() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
@@ -780,10 +995,10 @@ function arrowL() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
 
@@ -805,7 +1020,7 @@ function arrowL() {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
-    hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
     }
 
@@ -815,7 +1030,7 @@ function arrowL() {
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     shirtSY = shirtSYwithI(i) + (ShareShirt * 32);
-    shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
@@ -823,11 +1038,11 @@ function arrowL() {
 
     //바지
     if (samebutton(pantsnum)) {
-      pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+      pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
-    pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
-    pantscontext.translate(pantscanvas.width, 0);
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
+    pantscontext.translate(canvas.width, 0);
     pantscontext.scale(-1, 1);
     pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
     }
@@ -845,17 +1060,17 @@ function man() {
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
   
   hatheight = 0;
-  hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+  hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
 
   shirtheight = 0
-  shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+  shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
   shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
 
   pantsheight = 0;
-  pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+  pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
 }
 
@@ -865,16 +1080,16 @@ function woman() {
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
   
   hatheight = 1;
-  hatcontext.clearRect(0, 0, hatcanvas.width, hatcanvas.height);
+  hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
 
   shirtheight = 2;
-  shirtcontext.clearRect(0, 0, shirtcanvas.width, shirtcanvas.height);
+  shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
   shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);  
 
   pantsheight = 1;
-  pantscontext.clearRect(0, 0, pantscanvas.width, pantscanvas.height);
+  pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
 }

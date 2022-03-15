@@ -79,12 +79,14 @@
                 <i class="fa fa-solid fa-angle-left fa-3x" id="hairbtn-L" onclick="hairbtnL()"></i>
                 <!--만약 폰트어썸 작동 안되면 앞에 'fa' 한번 더 붙여보기!-->
               </div>
-              <canvas id="haircanvas"></canvas>
+              <canvas id="hairDcanvas"></canvas>
               <div class="body-arrow" id="R-arrow">
                 <i class="fa fa-solid fa-angle-right fa-3x" id="hairbtn-R" onclick="hairbtnR()"></i>
               </div>
             </div>
-            <div id="hair-num">헤어 스타일 1</div>
+            <div id="hair-setting">
+              <div><button id="hairundo" onclick="hairundobtn()">취소하기</button></div>
+            </div>
           </div>
           <div class="bodyinfwrap" id="bodyinf-Down">
             <h2 class="bodyinfheader">악세사리</h2>
@@ -92,12 +94,14 @@
               <div class="body-arrow" id="L-arrow">
                 <i class="fa fa-solid fa-angle-left fa-3x" id="accessory-L" onclick="accessorybtnL()"></i>
               </div>
-              <canvas id="accessorycanvas"></canvas>
+              <canvas id="accessoryDcanvas"></canvas>
               <div class="body-arrow" id="R-arrow">
                 <i class="fa fa-solid fa-angle-right fa-3x" id="accessory-R" onclick="accessorybtnR()"></i>
               </div>
             </div>
-            <div id="accessory-num">악세사리 스타일 1</div>
+            <div id="accessory-setting">
+              <div><button id="accessoryundo" onclick="accessoryundobtn()">취소하기</button></div>
+            </div>
           </div>
         </div>
       </div>
@@ -3290,4 +3294,7 @@
   <script src="system.js"></script>
 
 </body>
+
+<!--<a href="https://www.flaticon.com/free-icons/pet" title="pet icons">Pet icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/accessories" title="accessories icons">Accessories icons created by Victoruler - Flaticon</a>-->
 </html>
