@@ -290,7 +290,7 @@ table {
 #hairDcanvas {
   width: 192px;
   border: rgb(243, 158, 0) 2px solid;
-  background-size: 70% 70%;
+  background-size: 60% 60%;
   background-image: url('../StardewDressUp/hair-salon.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -309,19 +309,20 @@ table {
 #hair-setting {
   box-sizing: border-box;
   text-align: center;
+  height: 20%;
   padding: 0;
   margin: auto;
 }
 
 #hair-setting > div {
   box-sizing: border-box;
+  height: 80%;
   padding: 10px 10px 10px 0px;
 }
 
 #hairundo {
   position: relative;
   width: 15%;
-  height: 10%;
   background-color: orange;
   border-radius: 7px;
   color: white;
@@ -371,19 +372,20 @@ table {
 #accessory-setting {
   box-sizing: border-box;
   text-align: center;
+  height: 20%;
   padding: 0;
   margin: auto;
 }
 
 #accessory-setting > div {
   box-sizing: border-box;
+  height: 80%;
   padding: 10px 10px 10px 0px;
 }
 
 #accessoryundo {
   position: relative;
   width: 15%;
-  height: 10%;
   background-color: orange;
   border-radius: 7px;
   color: white;
