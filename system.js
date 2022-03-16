@@ -175,6 +175,7 @@ function hairbtnR() {
 }
 
 function hairbtn() {
+
   if (hairundo === true) {
   document.querySelector('#hairundo').innerHTML = '취소하기'
   hairundo = false;
@@ -274,6 +275,7 @@ function hairbtn() {
       haircontext.drawImage(hairimg, hairSX, hairSY, 16, 32, 70, 35 + hairheight, 170, 85);    
       hairDcontext.drawImage(hairimg, hairSX, hairPositionY, 16, 32, 90, 10, 130, 170);   
     }
+
     hairimg.src = 'https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/hair/hairstyles2.png';
   }
 }
@@ -740,7 +742,6 @@ var baseArmimgSY = 0;
 
 baseimg.onload = function() {
   context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
-  FootColoring(119, 41, 26);
   context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
 }
 
@@ -1665,7 +1666,7 @@ function woman() {
     }
   }
 
-  hairheight = 4;
+  hairheight = 1;
 
   if (hairundo) {
     haircontext.clearRect(0, 0, canvas.width, canvas.height);
@@ -1681,6 +1682,9 @@ function woman() {
   } else {
   accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
   accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+  if (i === 2) {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  }
   }
   
   hatheight = 1;
