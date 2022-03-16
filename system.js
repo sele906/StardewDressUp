@@ -292,8 +292,28 @@ function hairundobtn() {
   }
 }
 
+//두번 클릭시 취소
+var hatundo = false;
+
+function samebutton(num, numrepeat) {
+
+  if (num.length <= 1 ) {
+    return false;
+  } else if (num[num.length - 1] != num[num.length - 2]) {
+    numrepeat = 1;
+    return false;
+  } else {
+    if (numrepeat % 2 != 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
 //모자 버튼 클릭시
 var hatnum = [];
+var hatnumrepeat = 0;
 var ShareHat = 1;
 var hatSX = 0;
 var hatSY = 0;
@@ -308,28 +328,17 @@ var hatcontext = hatcanvas.getContext('2d');
 var hatimg = new Image();
 hatimg.crossOrigin="anonymous";
 
-function samebutton(num) {
-  if (num.length <= 1 ) {
-    return false;
-  } else {
-    if (num[0] != num[1]) {
-      return false;
-    } else {
-    return true;
-    }
-  }
-}
-
 function hatbtn(n) {
-
+  hatnumrepeat++;
   hatnum.push(n);
-  if (hatnum.length > 2) {
-    hatnum.splice(0, hatnum.length - 2);
+  if (hatnum.length > 10) {
+    hatnum.splice(0, hatnum.length - 10);
   }
-  
-  if (hatcanvas.toDataURL() != blank.toDataURL() && samebutton(hatnum)) {
+
+  if (samebutton(hatnum, hatnumrepeat) === true) {
     hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
+
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n % 12 === 1) {
@@ -387,6 +396,7 @@ function hatbtn(n) {
 //셔츠 버튼 클릭시
 
 var shirtbasenum = [];
+var shirtbasenumrepeat = 0;
 var shirtbasecanvas = document.getElementById('shirtbase');
 var shirtbasecontext = shirtbasecanvas.getContext('2d');
 var shirtbaseimg = new Image();
@@ -394,6 +404,7 @@ shirtbaseimg.crossOrigin="anonymous";
 
 var shirtheight = 0;
 var shirtnum = [];
+var shirtnumrepeat = 0;
 var shirtcanvas = document.getElementById('shirt');
 var shirtcontext = shirtcanvas.getContext('2d');
 var shirtimg = new Image();
@@ -408,13 +419,14 @@ var shirtSX = 0;
 var shirtSY = 0;
 
 function shirtbtn(n) {
-
-  shirtnum.push(n);
-  if (shirtnum.length > 2) {
-    shirtnum.splice(0, shirtnum.length - 2);
-  }
   
-  if (shirtcanvas.toDataURL() != blank.toDataURL() && samebutton(shirtnum)) {
+  shirtnumrepeat++;
+  shirtnum.push(n);
+  if (shirtnum.length > 10) {
+    shirtnum.splice(0, shirtnum.length - 10);
+  }
+
+  if (samebutton(shirtnum, shirtnumrepeat) === true) {
     shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
     shirtbasedraw(n);
   } else {
@@ -509,12 +521,13 @@ function shirtbtn(n) {
 
 function shirtbasedraw(n) {
 
+  shirtbasenumrepeat++;
   shirtbasenum.push(n);
-  if (shirtbasenum.length > 2) {
-    shirtbasenum.splice(0, shirtbasenum.length - 2);
+  if (shirtbasenum.length > 10) {
+    shirtbasenum.splice(0, shirtbasenum.length - 10);
   }
-  
-  if (shirtbasecanvas.toDataURL() != blank.toDataURL() && samebutton(shirtbasenum)) {
+
+  if (samebutton(shirtbasenum, shirtbasenumrepeat) === true) {
     shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
 
@@ -625,6 +638,7 @@ function shirtbasedraw(n) {
 //바지 버튼 클릭시
 
 var pantsnum = [];
+var pantsnumrepeat = 0;
 var pantscanvas = document.getElementById('pants')
 var pantscontext = pantscanvas.getContext('2d');
 var pantsimg = new Image();
@@ -641,14 +655,16 @@ var pantsheight = 0;
 
 function pantsbtn(n) {
 
+  pantsnumrepeat++;
   pantsnum.push(n);
-  if (pantsnum.length > 2) {
-    pantsnum.splice(0, pantsnum.length - 2);
+  if (pantsnum.length > 10) {
+    pantsnum.splice(0, pantsnum.length - 10);
   }
-  
-  if (pantscanvas.toDataURL() != blank.toDataURL() && samebutton(pantsnum)) {
+
+  if (samebutton(pantsnum, pantsnumrepeat) === true) {
     pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   } else {
+
   pantscontext.clearRect(0, 0, canvas.width, canvas.height);
 
   if (n === 1) {
@@ -731,7 +747,9 @@ baseimg.onload = function() {
 //신발 버튼 클릭시
 //이미지 데이터로 저장
 
-var shoescanvas = document.getElementById('shoes')
+var shoenum = [];
+var shoenumrepeat = 0;
+var shoescanvas = document.getElementById('shoes');
 var shoescontext = shoescanvas.getContext('2d');
 
 var leftfoot1 = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -746,6 +764,18 @@ var shoebtnnum = 0;
 var shoecolorlist = [];
 
 function shoesbtn(n) {
+
+  shoenumrepeat++;
+  shoenum.push(n);
+  if (shoenum.length > 10) {
+    shoenum.splice(0, shoenum.length - 10);
+  }
+
+  if (samebutton(shoenum, shoenumrepeat) === true) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+  } else {
   
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
@@ -780,6 +810,7 @@ function shoesbtn(n) {
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
     LeftFootPosition(144, 116, 25, 3, 137, 118, 29, 3, 133, 121, 28, 2);
     RightFootPosition(116, 115, 18, 2, 108, 116, 24, 2, 104, 117, 26, 2);
+  }
   }
 }
 
@@ -904,12 +935,18 @@ function arrowR() {
     //몸통
     baseimgSY = 33;
     baseArmimgSY = 33;
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
-    FootColor(shoebtnnum);
-    LeftFootPosition(127, 116, 30, 3, 126, 119, 38, 2, 135, 120, 26, 2);
-    RightFootPosition(164, 114, 18, 2, 165, 115, 20, 2, 170, 117, 20, 2); 
-    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      FootColor(shoebtnnum);
+      LeftFootPosition(127, 116, 30, 3, 126, 119, 38, 2, 135, 120, 26, 2);
+      RightFootPosition(164, 114, 18, 2, 165, 115, 20, 2, 170, 117, 20, 2); 
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
 
     //머리
 
@@ -937,7 +974,7 @@ function arrowR() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -946,7 +983,7 @@ function arrowR() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -958,7 +995,7 @@ function arrowR() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -973,12 +1010,18 @@ function arrowR() {
     //몸통
     baseimgSY = 65;
     baseArmimgSY = 65;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     FootColor(shoebtnnum);
     LeftFootPosition(122, 116, 27, 3, 127, 117, 15, 4, 130, 121, 7, 2);
     RightFootPosition(163, 116, 27, 3, 168, 117, 15, 4, 171, 121, 7, 2);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
 
     //머리
     if (hairundo) {
@@ -1003,7 +1046,7 @@ function arrowR() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1012,7 +1055,7 @@ function arrowR() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1026,7 +1069,7 @@ function arrowR() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1041,6 +1084,13 @@ function arrowR() {
     //몸통
     baseimgSY = 33;
     baseArmimgSY = 33;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.translate(canvas.width, 0);
+      context.scale(-1, 1);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
@@ -1048,7 +1098,8 @@ function arrowR() {
     FootColor(shoebtnnum);
     LeftFootPosition(144, 116, 25, 3, 137, 118, 29, 3, 133, 121, 28, 2);
     RightFootPosition(116, 115, 18, 2, 108, 116, 24, 2, 104, 117, 26, 2);
-    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95); 
+    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } 
 
     //머리
     if (hairundo) {
@@ -1079,7 +1130,7 @@ function arrowR() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1088,7 +1139,7 @@ function arrowR() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1100,7 +1151,7 @@ function arrowR() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1117,12 +1168,18 @@ function arrowR() {
     //몸통
     baseimgSY = 1;
     baseArmimgSY = 0;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     FootColor(shoebtnnum);
     LeftFootPosition(127, 113, 22, 7, 115, 117, 30, 4, 119, 121, 22, 2);
     RightFootPosition(164, 113, 22, 7, 167, 118, 30, 4, 169, 121, 22, 2);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
     
     //머리
     if (hairundo) {
@@ -1149,7 +1206,7 @@ function arrowR() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1158,7 +1215,7 @@ function arrowR() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1170,7 +1227,7 @@ function arrowR() {
     } 
     
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1184,6 +1241,7 @@ function arrowL() {
   context.setTransform(1,0,0,1,0,0);
   pantscontext.setTransform(1,0,0,1,0,0);
   haircontext.setTransform(1,0,0,1,0,0);
+  accessorycontext.setTransform(1,0,0,1,0,0);
 
   if (i === 3) {
     
@@ -1192,12 +1250,18 @@ function arrowL() {
     //몸통
     baseimgSY = 65;
     baseArmimgSY = 65;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     FootColor(shoebtnnum);
     LeftFootPosition(122, 116, 27, 3, 127, 117, 15, 4, 130, 121, 7, 2);
     RightFootPosition(163, 116, 27, 3, 168, 117, 15, 4, 171, 121, 7, 2);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
 
     //머리
     if (hairundo === true) {
@@ -1222,7 +1286,7 @@ function arrowL() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1231,7 +1295,7 @@ function arrowL() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1245,7 +1309,7 @@ function arrowL() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1260,12 +1324,18 @@ function arrowL() {
     //몸통
     baseimgSY = 33;
     baseArmimgSY = 33;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
     FootColor(shoebtnnum);
     LeftFootPosition(127, 116, 30, 3, 126, 119, 38, 2, 135, 120, 26, 2);
     RightFootPosition(164, 114, 18, 2, 165, 115, 20, 2, 170, 117, 20, 2); 
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
 
     //머리
     if (hairundo === true) {
@@ -1292,7 +1362,7 @@ function arrowL() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1301,7 +1371,7 @@ function arrowL() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtnumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1313,7 +1383,7 @@ function arrowL() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1328,12 +1398,18 @@ function arrowL() {
     //몸통
     baseimgSY = 1;
     baseArmimgSY = 0;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);  
     FootColor(shoebtnnum);
     LeftFootPosition(127, 113, 22, 7, 115, 117, 30, 4, 119, 121, 22, 2);
     RightFootPosition(164, 113, 22, 7, 167, 118, 30, 4, 169, 121, 22, 2);
     context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }
 
     //머리
     if (hairundo === true) {
@@ -1360,7 +1436,7 @@ function arrowL() {
     }    
     
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1369,7 +1445,7 @@ function arrowL() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1381,7 +1457,7 @@ function arrowL() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1396,6 +1472,13 @@ function arrowL() {
     //몸통
     baseimgSY = 33;
     baseArmimgSY = 33;
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.translate(canvas.width, 0);
+      context.scale(-1, 1);
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.translate(canvas.width, 0);
     context.scale(-1, 1);
@@ -1403,7 +1486,8 @@ function arrowL() {
     FootColor(shoebtnnum);
     LeftFootPosition(144, 116, 25, 3, 137, 118, 29, 3, 133, 121, 28, 2);
     RightFootPosition(116, 115, 18, 2, 108, 116, 24, 2, 104, 117, 26, 2);
-    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);  
+    context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    }  
 
     //머리
     if (hairundo === true) {
@@ -1434,7 +1518,7 @@ function arrowL() {
     }
 
     //모자
-    if (samebutton(hatnum)) {
+    if (samebutton(hatnum, hatnumrepeat)) {
       hatcontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     hatSY = hatSYwithI(i) + (ShareHat * 80);
@@ -1443,7 +1527,7 @@ function arrowL() {
     }
 
     //셔츠
-    if (samebutton(shirtnum) && samebutton(shirtbasenum)) {
+    if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
       shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
       shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
@@ -1455,7 +1539,7 @@ function arrowL() {
     }
 
     //바지
-    if (samebutton(pantsnum)) {
+    if (samebutton(pantsnum, pantsnumrepeat)) {
       pantscontext.clearRect(0, 0, canvas.width, canvas.height);
     } else {
     pantsSY = pantsSYwithI(i) + pantsPositionY;
@@ -1470,57 +1554,162 @@ function arrowL() {
 //성별 클릭했을 때
 
 function man() {
+  
   context.clearRect(0, 0, canvas.width, canvas.height);
   baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_base.png';
+  baseimg.onload = function() {
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+      FootColor(shoebtnnum);
+      if (i === 0) {  
+        LeftFootPosition(127, 113, 22, 7, 115, 117, 30, 4, 119, 121, 22, 2);
+        RightFootPosition(164, 113, 22, 7, 167, 118, 30, 4, 169, 121, 22, 2);
+      } else if (i === 1) {
+        LeftFootPosition(127, 116, 30, 3, 126, 119, 38, 2, 135, 120, 26, 2);
+        RightFootPosition(164, 114, 18, 2, 165, 115, 20, 2, 170, 117, 20, 2); 
+      } else if (i === 2) {
+        LeftFootPosition(122, 116, 27, 3, 127, 117, 15, 4, 130, 121, 7, 2);
+        RightFootPosition(163, 116, 27, 3, 168, 117, 15, 4, 171, 121, 7, 2);
+      } else if (i === 3) {
+        LeftFootPosition(144, 116, 25, 3, 137, 118, 29, 3, 133, 121, 28, 2);
+        RightFootPosition(116, 115, 18, 2, 108, 116, 24, 2, 104, 117, 26, 2);
+      }
+    }
+  }
+  
 
   hairheight = 0;
+
+  if (hairundo) {
+    haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   haircontext.clearRect(0, 0, canvas.width, canvas.height);
   haircontext.drawImage(hairimg, hairSX, hairSY, 16, 33, 74, 37 + hairheight, 170, 90); 
+  }
 
   accessoryheight = 0;
+
+  if (accessoryundo === true) {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
   accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+  if (i === 2) {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  }
   
   hatheight = 0;
+
+  if (samebutton(hatnum, hatnumrepeat)) {
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+  }
 
   shirtheight = 0
+
+  if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+    shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
   shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);
+  }
 
   pantsheight = 0;
+
+  if (samebutton(pantsnum, pantsnumrepeat)) {
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+  }
 }
 
 function woman() {
+  
   context.clearRect(0, 0, canvas.width, canvas.height);
   baseimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
   baseArmimg.src='https://raw.githubusercontent.com/ihyeon908/StardewDressUp/main/base/farmer_girl_base.png';
 
+  baseimg.onload = function() {
+    if (samebutton(shoenum, shoenumrepeat)) {
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+    } else {
+      context.drawImage(baseimg, baseimgSX, baseimgSY, 16, 33, 76, 36, 160, 95);
+      context.drawImage(baseArmimg, baseArmimgSX, baseArmimgSY, 16, 33, 76, 30, 160, 95);
+      FootColor(shoebtnnum);
+      if (i === 0) {  
+        LeftFootPosition(127, 113, 22, 7, 115, 117, 30, 4, 119, 121, 22, 2);
+        RightFootPosition(164, 113, 22, 7, 167, 118, 30, 4, 169, 121, 22, 2);
+      } else if (i === 1) {
+        LeftFootPosition(127, 116, 30, 3, 126, 119, 38, 2, 135, 120, 26, 2);
+        RightFootPosition(164, 114, 18, 2, 165, 115, 20, 2, 170, 117, 20, 2); 
+      } else if (i === 2) {
+        LeftFootPosition(122, 116, 27, 3, 127, 117, 15, 4, 130, 121, 7, 2);
+        RightFootPosition(163, 116, 27, 3, 168, 117, 15, 4, 171, 121, 7, 2);
+      } else if (i === 3) {
+        LeftFootPosition(144, 116, 25, 3, 137, 118, 29, 3, 133, 121, 28, 2);
+        RightFootPosition(116, 115, 18, 2, 108, 116, 24, 2, 104, 117, 26, 2);
+      }
+    }
+  }
+
   hairheight = 4;
+
+  if (hairundo) {
+    haircontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   haircontext.clearRect(0, 0, canvas.width, canvas.height);
   haircontext.drawImage(hairimg, hairSX, hairSY, 16, 33, 74, 37 + hairheight, 170, 90); 
+  }
 
   accessoryheight = 3;
+
+  if (accessoryundo === true) {
+    accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   accessorycontext.clearRect(0, 0, canvas.width, canvas.height);
   accessorycontext.drawImage(accessoryimg, accessorySX, accessorySY, 17, 20, 62, 35 + accessoryheight, 200, 65); 
+  }
   
   hatheight = 1;
+
+  if (samebutton(hatnum, hatnumrepeat)) {
+    hatcontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   hatcontext.clearRect(0, 0, canvas.width, canvas.height);
   hatcontext.drawImage(hatimg, hatSX, hatSY, 20, 20, 60, 24 + hatheight, 190, 60);
+  }
 
   shirtheight = 2;
+
+  if (samebutton(shirtnum, shirtnumrepeat) && samebutton(shirtbasenum, shirtbasenumrepeat)) {
+    shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
+    shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   shirtcontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtcontext.drawImage(shirtimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20); 
   shirtbasecontext.clearRect(0, 0, canvas.width, canvas.height);
   shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);  
+  }
 
   pantsheight = 1;
+
+  if (samebutton(pantsnum, pantsnumrepeat)) {
+    pantscontext.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
   pantscontext.clearRect(0, 0, canvas.width, canvas.height);
   pantscontext.drawImage(pantsimg, pantsSX, pantsSY, 16, 33, 77, 30 + pantsheight, 160, 95);
+  }
 }
