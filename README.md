@@ -2,7 +2,7 @@
 
 <img src="https://user-images.githubusercontent.com/81071162/158763144-c0c7fdaa-57c4-4624-8242-60ec18f9e6dd.png" width="900" height="400">
 
-[스타듀밸리 드레스업 게임](https://ihyeon908.github.io/StardewDressUp/)입니다.
+[스타듀밸리 드레스업 게임](https://seunga906.github.io/StardewDressUp/)입니다.
 
 직접 의상을 고를 수 있으며, 자신의 캐릭터에 맞는 스타일을 재현할 수 있습니다.
 
