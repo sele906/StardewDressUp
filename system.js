@@ -1708,7 +1708,7 @@ function woman() {
   shirtbasecontext.drawImage(shirtbaseimg, shirtSX, shirtSY, 8, 8, 120, 76 + shirtheight, 70, 20);  
   }
 
-  pantsheight = 1;
+  pantsheight = 3;
 
   if (samebutton(pantsnum, pantsnumrepeat)) {
     pantscontext.clearRect(0, 0, canvas.width, canvas.height);
